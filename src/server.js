@@ -19,18 +19,14 @@ async function handleCurrencies () {
     return veb.length >= 25 ? 'WORLD RECORD!!!':''
   }
 
-  // console.log({sob: ves, fue: vef, bol: veb, record: checkRecord() });
-
-  return {sob: ves, fue: vef, bol: veb, record: checkRecord() }
+  return {sob: ves, fue: vef, bol: veb, dig: 0, record: checkRecord() }
 }
 
 const valuesContainer = () => handleCurrencies().then((res) => {
-  client.post('statuses/update', {status: `El valor de la familia Bolivar con respecto al dolar: \n VEB: ${res.bol} \n VEF: ${res.fue} \n VES: ${res.sob} \n USD: 1`})
+  client.post('statuses/update', {status: `El valor de la familia Bolivar con respecto al dolar: \n VEB: ${res.bol} \n VEF: ${res.fue} \n VES: ${res.sob} \n`})
   .then((tweet) => {
     console.log(tweet)
   }).catch((err) => console.log(err));
 });
 
-valuesContainer();
-setInterval(valuesContainer, 1000 * 60 * 60)
-
+module.exports = valuesContainer;
